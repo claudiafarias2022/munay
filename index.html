@@ -107,7 +107,20 @@
       width: 100%;
       max-width: 340px;
       border-radius: 50%;
-      filter: drop-shadow(0 0 30px rgba(201,169,110,0.3));
+      border: 3px solid var(--oro);
+      box-shadow:
+        0 0 20px rgba(201,169,110,0.3),
+        0 0 60px rgba(201,169,110,0.15),
+        inset 0 0 30px rgba(201,169,110,0.1);
+      filter: drop-shadow(0 0 40px rgba(201,169,110,0.25));
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .logo-svg:hover {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 30px rgba(201,169,110,0.5),
+        0 0 80px rgba(201,169,110,0.25),
+        inset 0 0 30px rgba(201,169,110,0.15);
     }
 
     /* ===== CAROUSEL HIEROGLYPHS ===== */
@@ -415,13 +428,13 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 991px) {
       .frase-text { font-size: 0.95rem; max-width: 100%; }
-      .logo-svg { max-width: 260px; margin-top: 2rem; }
+      .logo-svg { max-width: 260px; margin-top: 2rem; border-width: 2px; }
       .hero-content { padding: 3rem 0; }
     }
     @media (max-width: 767px) {
       .hero { min-height: auto; }
       .frase-text { font-size: 0.9rem; text-align: left; }
-      .logo-svg { max-width: 200px; margin-top: 1.5rem; }
+      .logo-svg { max-width: 200px; margin-top: 1.5rem; border-width: 2px; }
       .section-title { font-size: 1.6rem; }
       .service-card { padding: 1.5rem 1rem; }
       .form-card { padding: 1.5rem; }
