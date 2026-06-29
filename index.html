@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Munay - Centro Holístico</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --crema: #FFF8F0;
+      --terracota: #C67B5C;
+      --terracota-dark: #A05D42;
+      --verde-sage: #8FA88A;
+      --verde-sage-dark: #6B8A66;
+      --oro: #C9A96E;
+      --marron: #4A3525;
+      --marron-claro: #7A5F4A;
+      --fondo-oscuro: #2C1810;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--crema);
+      color: var(--marron);
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6, .font-serif {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0f0a 0%, #2C1810 40%, #3d2317 70%, #1a0f0a 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(198,123,92,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-particles span {
+      position: absolute;
+      color: rgba(201,169,110,0.15);
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      animation: float-particle 20s infinite linear;
+    }
+    @keyframes float-particle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 4rem 0;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--oro), transparent);
+      margin: 1.5rem 0;
+    }
+    .hero-divider.center { margin: 1.5rem auto; }
+    .frase-text {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,248,240,0.85);
+      font-weight: 300;
+      text-align: justify;
+      max-width: 600px;
+    }
+    .frase-text .highlight {
+      color: var(--oro);
+      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+    }
+
+    /* ===== LOGO SVG ===== */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-svg {
+      width: 100%;
+      max-width: 340px;
+      filter: drop-shadow(0 0 40px rgba(201,169,110,0.2));
+    }
+
+    /* ===== CAROUSEL HIEROGLYPHS ===== */
+    .hiero-section {
+      background: linear-gradient(180deg, #1a0f0a 0%, #2C1810 100%);
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(201,169,110,0.15);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .hiero-section h3 {
+      color: var(--oro);
+      font-size: 0.85rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+    .hiero-carousel {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hiero-carousel .carousel-item {
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .hiero-carousel .carousel-item .hiero-symbol {
+      font-size: 5rem;
+      line-height: 1.2;
+      display: block;
+      color: var(--oro);
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .hiero-carousel .carousel-item .hiero-label {
+      display: block;
+      color: rgba(255,248,240,0.4);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-top: 0.5rem;
+      font-family: 'Cinzel', serif;
+    }
+    .hiero-carousel .carousel-control-prev,
+    .hiero-carousel .carousel-control-next {
+      width: 50px;
+      opacity: 0.3;
+    }
+    .hiero-carousel .carousel-control-prev:hover,
+    .hiero-carousel .carousel-control-next:hover { opacity: 0.7; }
+    .hiero-carousel .carousel-indicators {
+      position: static;
+      margin-top: 1rem;
+    }
+    .hiero-carousel .carousel-indicators button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--oro);
+      background: transparent;
+      opacity: 0.3;
+    }
+    .hiero-carousel .carousel-indicators button.active {
+      background: var(--oro);
+      opacity: 0.8;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-section {
+      padding: 6rem 0;
+      background: var(--crema);
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--marron);
+      font-weight: 700;
+      font-size: 2.2rem;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--marron-claro);
+      margin-bottom: 3rem;
+      font-weight: 300;
+      font-size: 1.05rem;
+    }
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracota);
+      margin: 1rem auto 3rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(74,53,37,0.06);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(74,53,37,0.04);
+      height: 100%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracota), var(--oro), var(--verde-sage));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(74,53,37,0.1);
+      border-color: rgba(198,123,92,0.15);
+    }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.6rem;
+      color: white;
+      transition: transform 0.3s;
+    }
+    .service-card:hover .service-icon { transform: scale(1.1); }
+    .service-icon.c1 { background: linear-gradient(135deg, #C67B5C, #A05D42); }
+    .service-icon.c2 { background: linear-gradient(135deg, #8FA88A, #6B8A66); }
+    .service-icon.c3 { background: linear-gradient(135deg, #C9A96E, #A8894E); }
+    .service-icon.c4 { background: linear-gradient(135deg, #7A5F4A, #4A3525); }
+    .service-icon.c5 { background: linear-gradient(135deg, #B88A7A, #8A6656); }
+    .service-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--marron);
+      margin-bottom: 0.6rem;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--marron-claro);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .btn-vermas {
+      background: transparent;
+      border: 1.5px solid var(--terracota);
+      color: var(--terracota);
+      padding: 0.4rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .btn-vermas:hover {
+      background: var(--terracota);
+      color: white;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-content {
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .modal-header {
+      background: linear-gradient(135deg, var(--marron), var(--fondo-oscuro));
+      color: var(--crema);
+      border: none;
+      padding: 1.5rem 2rem;
+      position: relative;
+    }
+    .modal-header .btn-close {
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+    .modal-header .btn-close:hover { opacity: 1; }
+    .modal-body {
+      padding: 2rem;
+    }
+    .modal-service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: white;
+      margin-right: 1rem;
+    }
+    .modal-service-desc {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--marron);
+    }
+    .modal-service-price {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--terracota);
+      font-weight: 700;
+    }
+    .modal-service-price small {
+      font-size: 0.9rem;
+      font-family: 'Quicksand', sans-serif;
+      color: var(--marron-claro);
+      font-weight: 300;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover {
+      background: #1DA851;
+      color: white;
+      transform: scale(1.03);
+    }
+
+    /* ===== FORM SECTION ===== */
+    .form-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--fondo-oscuro), #3d2317, var(--fondo-oscuro));
+      color: var(--crema);
+      position: relative;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .form-section .container { position: relative; z-index: 2; }
+    .form-section .section-title { color: var(--crema); }
+    .form-section .section-subtitle { color: rgba(255,248,240,0.6); }
+    .form-section .section-divider { background: var(--oro); }
+    .form-card {
+      background: rgba(255,248,240,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,169,110,0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .form-control-custom {
+      background: rgba(255,248,240,0.08);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      color: var(--crema);
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    .form-control-custom:focus {
+      background: rgba(255,248,240,0.12);
+      border-color: var(--oro);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+      outline: none;
+      color: var(--crema);
+    }
+    .form-control-custom::placeholder { color: rgba(255,248,240,0.35); }
+    .form-label-custom {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,248,240,0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, var(--oro), #A8894E);
+      color: var(--marron);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      width: 100%;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,169,110,0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: #1a0f0a;
+      padding: 2rem 0;
+      text-align: center;
+      color: rgba(255,248,240,0.3);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(201,169,110,0.08);
+    }
+    .site-footer .footer-munay {
+      font-family: 'Cinzel', serif;
+      color: rgba(201,169,110,0.3);
+      letter-spacing: 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      .frase-text { font-size: 0.95rem; max-width: 100%; }
+      .logo-svg { max-width: 260px; margin-top: 2rem; }
+      .hero-content { padding: 3rem 0; }
+    }
+    @media (max-width: 767px) {
+      .hero { min-height: auto; }
+      .frase-text { font-size: 0.9rem; text-align: left; }
+      .logo-svg { max-width: 200px; margin-top: 1.5rem; }
+      .section-title { font-size: 1.6rem; }
+      .service-card { padding: 1.5rem 1rem; }
+      .hiero-carousel .carousel-item .hiero-symbol { font-size: 3.5rem; }
+      .form-card { padding: 1.5rem; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .scroll-fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="row align-items-center gx-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="frase-text">
+            <span class="highlight">Munay</span> significa el poder del amor incondicional,
+            el amor íntegro, el amor que abarca, el poder, la compasión, la alegría, la sexualidad,
+            nuestras responsabilidades con nosotros mismos y con el mundo que nos rodea y la sociedad
+            en la que nos movemos, el amor al prójimo sin juicios, sin condena.
+            <br><br>
+            Es la fuerza que nos hace ver la vida con los ojos del alma,
+            descubriendo cada día lo hermoso de vivir con las batallas externas.
+          </div>
+          <div class="hero-divider"></div>
+        </div>
+        <div class="col-lg-6">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ring exterior -->
+              <circle cx="200" cy="200" r="175" fill="none" stroke="url(#ringGrad)" stroke-width="8" opacity="0.6"/>
+              <circle cx="200" cy="200" r="165" fill="none" stroke="url(#ringGrad2)" stroke-width="2" opacity="0.3"/>
+              <!-- Fondo crema interior -->
+              <circle cx="200" cy="200" r="160" fill="#F5EDE0" opacity="0.95"/>
+              <!-- Estrella superior -->
+              <polygon points="200,45 208,72 237,72 213,88 222,117 200,99 178,117 187,88 163,72 192,72"
+                fill="#5BA3A6" opacity="0.9"/>
+              <!-- Corazón -->
+              <path d="M200 290 C200 290 145 245 145 210 C145 190 160 175 180 175 C190 175 197 181 200 188 C203 181 210 175 220 175 C240 175 255 190 255 210 C255 245 200 290 200 290Z"
+                fill="#C0392B" stroke="#8B4513" stroke-width="1.5"/>
+              <!-- Llamas -->
+              <path d="M200 175 Q190 155 185 140 Q180 125 190 115 Q195 120 198 130 L200 140 L202 130 Q205 120 210 115 Q220 125 215 140 Q210 155 200 175Z"
+                fill="#E67E22" opacity="0.8"/>
+              <path d="M200 175 Q193 160 188 148 Q185 138 192 130 Q196 138 198 148 L200 155 L202 148 Q204 138 208 130 Q215 138 212 148 Q207 160 200 175Z"
+                fill="#F1C40F" opacity="0.7"/>
+              <!-- Rosa -->
+              <ellipse cx="200" cy="115" rx="10" ry="8" fill="#D2B4DE" stroke="#9B59B6" stroke-width="0.8"/>
+              <ellipse cx="195" cy="113" rx="6" ry="5" fill="#E8DAEF" stroke="#9B59B6" stroke-width="0.5"/>
+              <ellipse cx="205" cy="113" rx="6" ry="5" fill="#E8DAEF" stroke="#9B59B6" stroke-width="0.5"/>
+              <ellipse cx="200" cy="109" rx="5" ry="4" fill="#F5EEF8"/>
+              <!-- M central -->
+              <path d="M180 230 L188 260 L200 240 L212 260 L220 230"
+                fill="none" stroke="#5BA3A6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M180 230 L188 260 L200 240 L212 260 L220 230"
+                fill="none" stroke="#D4E6E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+              <!-- U semicírculo -->
+              <path d="M185 265 Q185 290 200 290 Q215 290 215 265"
+                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round"/>
+              <path d="M170 275 Q170 295 200 295 Q230 295 230 275"
+                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round"/>
+              <!-- N -->
+              <path d="M235 270 L235 295 L252 270 L252 295"
+                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- A -->
+              <path d="M257 295 L262 270 L267 295 M259 284 L265 284"
+                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Y -->
+              <path d="M272 270 L280 282 L288 270 M280 282 L280 295"
+                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Follaje sutil derecha -->
+              <path d="M310 230 Q325 220 320 200 Q315 185 300 195 Q290 205 295 220 Q298 230 310 230Z"
+                fill="#8FA88A" opacity="0.15"/>
+              <path d="M320 215 Q330 210 328 195 Q325 182 315 190 Q308 198 312 210Z"
+                fill="#8FA88A" opacity="0.1"/>
+              <!-- Iluminación -->
+              <ellipse cx="180" cy="180" rx="80" ry="60" fill="white" opacity="0.04"/>
+              <!-- Gradientes -->
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#C9A96E"/>
+                  <stop offset="50%" stop-color="#8B6914"/>
+                  <stop offset="100%" stop-color="#C9A96E"/>
+                </linearGradient>
+                <linearGradient id="ringGrad2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D4A86A"/>
+                  <stop offset="100%" stop-color="#A8894E"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HIEROGLYPH CAROUSEL ===== -->
+<section class="hiero-section">
+  <div class="container">
+    <h3 class="text-center">Símbolos Sagrados</h3>
+    <div id="hieroCarousel" class="carousel slide hiero-carousel" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <span class="hiero-symbol">&#x2625;</span>
+          <span class="hiero-label">ANKH · Vida Eterna</span>
+        </div>
+        <div class="carousel-item">
+          <span class="hiero-symbol">&#x1F776;</span>
+          <span class="hiero-label">OJO DE HORUS · Protección</span>
+        </div>
+        <div class="carousel-item">
+          <span class="hiero-symbol">&#x2606;</span>
+          <span class="hiero-label">ESTRELLA · Guía Espiritual</span>
+        </div>
+        <div class="carousel-item">
+          <span class="hiero-symbol">&#x1F549;</span>
+          <span class="hiero-label">OM · Vibración Universal</span>
+        </div>
+        <div class="carousel-item">
+          <span class="hiero-symbol">&#x2727;</span>
+          <span class="hiero-label">FLOR DE LA VIDA · Creación</span>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#hieroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#hieroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services-section" id="servicios">
+  <div class="container">
+    <h2 class="section-title scroll-fade">Servicios</h2>
+    <p class="section-subtitle scroll-fade">Herramientas ancestrales para tu bienestar integral</p>
+    <div class="section-divider scroll-fade"></div>
+    <div class="row g-4" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ===== COURSES ===== -->
+<section class="services-section" id="cursos" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title scroll-fade">Cursos</h2>
+    <p class="section-subtitle scroll-fade">Formación práctica en herramientas de sanación y autoconocimiento</p>
+    <div class="section-divider scroll-fade"></div>
+    <div class="row g-4" id="coursesGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SERVICE MODAL ===== -->
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex align-items-center">
+          <div class="modal-service-icon" id="modalIcon"></div>
+          <h5 class="mb-0 font-serif" id="modalTitle">Servicio</h5>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-service-desc mb-4" id="modalDesc"></div>
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3" style="background:#FFF8F0;border-radius:12px;">
+          <div>
+            <small style="color:var(--marron-claro);font-size:0.8rem;">Inversión</small>
+            <div class="modal-service-price" id="modalPrice">$0</div>
+          </div>
+          <a id="modalWhatsapp" class="btn-whatsapp" href="#" target="_blank">
+            <i class="bi bi-whatsapp"></i> Consultar
+          </a>
+        </div>
+        <p class="mb-0" style="font-size:0.82rem;color:var(--marron-claro);">
+          <i class="bi bi-info-circle"></i> Haz clic en "Consultar" para comunicarte directamente por WhatsApp
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NOTIFICATIONS FORM ===== -->
+<section class="form-section" id="notificaciones">
+  <div class="container">
+    <h2 class="section-title scroll-fade">Recibe Notificaciones</h2>
+    <p class="section-subtitle scroll-fade">Entérate de nuevos cursos, talleres y eventos especiales</p>
+    <div class="section-divider scroll-fade"></div>
+    <div class="form-card scroll-fade">
+      <form id="notifForm">
+        <div class="mb-4">
+          <label class="form-label-custom" for="formName">Nombre</label>
+          <input type="text" class="form-control-custom" id="formName" placeholder="Tu nombre" required>
+        </div>
+        <div class="mb-4">
+          <label class="form-label-custom" for="formAge">Edad</label>
+          <input type="number" class="form-control-custom" id="formAge" placeholder="Tu edad" min="1" max="120" required>
+        </div>
+        <button type="submit" class="btn-submit">
+          <i class="bi bi-bell"></i> Suscribirme
+        </button>
+      </form>
+      <div id="formSuccess" class="text-center mt-3" style="display:none;color:var(--oro);font-size:0.95rem;">
+        <i class="bi bi-check-circle"></i> ¡Gracias por suscribirte!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="mb-1">Munay · Centro Holístico</p>
+    <p class="footer-munay mb-0">Amor Incondicional</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ===== SERVICES DATA =====
+const services = [
+  {
+    id: 'chamanismo',
+    name: 'Chamanismo',
+    icon: 'bi-tree',
+    color: 1,
+    shortDesc: 'Conexión con la sabiduría ancestral a través de ceremonias y rituales de sanación.',
+    fullDesc: 'El chamanismo es una práctica ancestral que busca la sanación a través de la conexión con la naturaleza, los espíritus guías y las energías sutiles. A través de ceremonias, cantos y rituales, el chamán facilita un viaje de autodescubrimiento y sanación profunda, liberando bloqueos energéticos y restaurando el equilibrio del ser.',
+    price: '$1,500',
+    waText: 'Hola, quiero información sobre la sesión de Chamanismo'
+  },
+  {
+    id: 'tameana',
+    name: 'Tameana',
+    icon: 'bi-gem',
+    color: 2,
+    shortDesc: 'Sanación con cristales y geometría sagrada para armonizar tus centros energéticos.',
+    fullDesc: 'Tameana es un sistema de sanación que utiliza cristales, cuarzos y geometría sagrada para armonizar y limpiar los centros energéticos. Esta terapia permite liberar patrones ancestrales, equilibrar chakras y conectar con la esencia más pura de tu ser, facilitando una profunda transformación interior.',
+    price: '$1,800',
+    waText: 'Hola, quiero información sobre la sesión de Tameana'
+  },
+  {
+    id: 'registros-akashicos',
+    name: 'Registros Akáshicos',
+    icon: 'bi-book',
+    color: 3,
+    shortDesc: 'Lectura del archivo universal del alma para revelar tu propósito y sanar tu historia.',
+    fullDesc: 'Los Registros Akáshicos son la biblioteca energética universal que contiene la historia completa de cada alma. A través de esta lectura, puedes acceder a información valiosa sobre tu propósito de vida, patrones kármicos, dones y bloqueos. Es una herramienta poderosa de sanación y autoconocimiento que te guía hacia tu camino más elevado.',
+    price: '$1,200',
+    waText: 'Hola, quiero información sobre la lectura de Registros Akáshicos'
+  },
+  {
+    id: 'constelaciones-familiares',
+    name: 'Constelaciones Familiares',
+    icon: 'bi-people',
+    color: 4,
+    shortDesc: 'Sanación sistémica que revela y transforma las dinámicas ocultas en tu sistema familiar.',
+    fullDesc: 'Las Constelaciones Familiares, creadas por Bert Hellinger, permiten visibilizar las dinámicas ocultas dentro del sistema familiar que afectan nuestra vida actual. A través de esta terapia sistémica, se identifican y sanan lealtades invisibles, exclusiones y patrones heredados, restaurando el orden y el amor en el sistema.',
+    price: '$2,000',
+    waText: 'Hola, quiero información sobre Constelaciones Familiares'
+  },
+  {
+    id: 'sanaciones-populares',
+    name: 'Sanaciones Populares',
+    icon: 'bi-flower1',
+    color: 5,
+    shortDesc: 'Técnicas tradicionales de sanación transmitidas por generaciones para el bienestar integral.',
+    fullDesc: 'Las Sanaciones Populares son técnicas tradicionales transmitidas de generación en generación que incluyen limpias energéticas, sobadas, rezos y remedios naturales. Estas prácticas ancestrales abordan el bienestar desde una visión integral del ser, combinando el saber popular con la sabiduría de la naturaleza.',
+    price: '$800',
+    waText: 'Hola, quiero información sobre Sanaciones Populares'
+  },
+  {
+    id: 'reiki-kundalini',
+    name: 'Reiki Kundalini',
+    icon: 'bi-sun',
+    color: 1,
+    shortDesc: 'Activación de la energía Kundalini para despertar tu potencial interior y sanar profundamente.',
+    fullDesc: 'Reiki Kundalini es una poderosa modalidad de Reiki que trabaja con la energía primordial que reside en la base de la columna vertebral. Esta técnica facilita el despertar de la conciencia, la limpieza de canales energéticos y la activación del potencial dormido, promoviendo una sanación integral a nivel físico, emocional y espiritual.',
+    price: '$1,500',
+    waText: 'Hola, quiero información sobre Reiki Kundalini'
+  },
+  {
+    id: 'reiki-hada',
+    name: 'Reiki Hada',
+    icon: 'bi-stars',
+    color: 2,
+    shortDesc: 'Sanación suave con la energía de los elementales y las hadas para conectar con la naturaleza.',
+    fullDesc: 'Reiki Hada es una modalidad de sanación que trabaja en conexión con los reinos elementales de la naturaleza. Utiliza la energía dulce y amorosa de las hadas y seres de la naturaleza para armonizar el ser, sanar heridas emocionales y reconectar con la alegría y la magia de la vida.',
+    price: '$1,300',
+    waText: 'Hola, quiero información sobre Reiki Hada'
+  },
+  {
+    id: 'tarot',
+    name: 'Tarot',
+    icon: 'bi-card-image',
+    color: 3,
+    shortDesc: 'Lectura de arcanos para obtener claridad, guía y perspectiva sobre tu camino.',
+    fullDesc: 'El Tarot es una herramienta milenaria de autoconocimiento y orientación. A través de la lectura de los arcanos mayores y menores, se obtiene una visión profunda de las energías presentes en tu vida, ayudándote a tomar decisiones conscientes y a comprender los ciclos y lecciones que atraviesas.',
+    price: '$900',
+    waText: 'Hola, quiero información sobre la lectura de Tarot'
+  },
+  {
+    id: 'astrologia',
+    name: 'Astrología',
+    icon: 'bi-moon-stars',
+    color: 4,
+    shortDesc: 'Interpretación de tu carta natal para comprender tu esencia y tu camino evolutivo.',
+    fullDesc: 'La Astrología es un lenguaje simbólico que estudia la relación entre los movimientos planetarios y la experiencia humana. Mediante el análisis de tu carta natal, podemos comprender tus dones, desafíos, patrones emocionales y el propósito de tu alma, ofreciéndote una guía valiosa para tu evolución personal.',
+    price: '$1,500',
+    waText: 'Hola, quiero información sobre la lectura de Astrología'
+  },
+  {
+    id: 'limpiezas-energeticas',
+    name: 'Limpiezas Energéticas',
+    icon: 'bi-wind',
+    color: 5,
+    shortDesc: 'Purificación de tu campo energético para liberar cargas y restaurar tu vitalidad.',
+    fullDesc: 'Las Limpiezas Energéticas son procesos de purificación del campo áurico y los centros energéticos. Utilizando diversas técnicas como sahumerios, sonidos, cristales y visualizaciones, se eliminan las cargas energéticas acumuladas, bloqueos y energías estancadas, restaurando el flujo vital y la sensación de bienestar.',
+    price: '$700',
+    waText: 'Hola, quiero información sobre Limpiezas Energéticas'
+  },
+  {
+    id: 'radiestesia-integral',
+    name: 'Radiestesia Integral',
+    icon: 'bi-activity',
+    color: 1,
+    shortDesc: 'Detección y armonización de energías sutiles mediante péndulos y herramientas radiestésicas.',
+    fullDesc: 'La Radiestesia Integral es la ciencia de detectar y medir las radiaciones energéticas sutiles. Utilizando péndulos, varillas y otros instrumentos, se pueden identificar desequilibrios energéticos en personas, espacios y objetos, permitiendo armonizarlos para restaurar el bienestar y la armonía.',
+    price: '$1,100',
+    waText: 'Hola, quiero información sobre Radiestesia Integral'
+  },
+  {
+    id: 'pendulos',
+    name: 'Péndulos',
+    icon: 'bi-circle',
+    color: 2,
+    shortDesc: 'Trabajo con péndulos para diagnóstico energético, sanación y toma de decisiones conscientes.',
+    fullDesc: 'El trabajo con péndulos es una técnica de radiestesia que permite acceder a información del campo energético y la conciencia superior. Se utiliza para diagnóstico energético, limpieza de chakras, búsqueda de objetos, sanación a distancia y como herramienta de apoyo en la toma de decisiones alineadas con tu bien superior.',
+    price: '$600',
+    waText: 'Hola, quiero información sobre el trabajo con Péndulos'
+  },
+  {
+    id: 'geometria-sagrada',
+    name: 'Geometría Sagrada',
+    icon: 'bi-hexagon',
+    color: 3,
+    shortDesc: 'Estudio y aplicación de patrones geométricos universales para la sanación y la elevación espiritual.',
+    fullDesc: 'La Geometría Sagrada es el estudio de los patrones geométricos fundamentales que subyacen en toda la creación. Estas formas sagradas —como la Flor de la Vida, el Cubo Metatrón o los Sólidos Platónicos— se utilizan para meditación, sanación, activación energética y conexión con las frecuencias elevadas del universo.',
+    price: '$1,000',
+    waText: 'Hola, quiero información sobre Geometría Sagrada'
+  },
+  {
+    id: 'rueda-medicinal',
+    name: 'Rueda Medicinal',
+    icon: 'bi-compass',
+    color: 4,
+    shortDesc: 'Camino circular de sanación inspirado en la sabiduría de los pueblos originarios.',
+    fullDesc: 'La Rueda Medicinal es una antigua práctica de sanación de los pueblos originarios de América que representa el ciclo de la vida y las direcciones sagradas. A través de este recorrido circular, se trabaja con los cuatro elementos, los animales de poder y las enseñanzas ancestrales para restaurar el equilibrio y la armonía integral.',
+    price: '$1,600',
+    waText: 'Hola, quiero información sobre la Rueda Medicinal'
+  },
+  {
+    id: 'runas',
+    name: 'Runas',
+    icon: 'bi-signpost',
+    color: 5,
+    shortDesc: 'Sabiduría nórdica ancestral para la orientación, protección y autoconocimiento.',
+    fullDesc: 'Las Runas son un antiguo sistema oracular de origen nórdico que combina símbolos sagrados con poderosas energías arquetípicas. Cada runa contiene un conocimiento profundo que nos guía en nuestro camino, ofreciendo protección, claridad y conexión con la sabiduría de los ancestros del norte.',
+    price: '$800',
+    waText: 'Hola, quiero información sobre la lectura de Runas'
+  },
+  {
+    id: 'mesas-radionicas',
+    name: 'Mesas Radiónicas',
+    icon: 'bi-grid-3x3',
+    color: 1,
+    shortDesc: 'Dispositivos energéticos que canalizan frecuencias de sanación a distancia.',
+    fullDesc: 'Las Mesas Radiónicas son instrumentos de sanación que trabajan con frecuencias energéticas y símbolos para enviar sanación a distancia. Estas mesas permiten canalizar energías específicas para armonizar personas, situaciones y espacios, trascendiendo las limitaciones del tiempo y el espacio mediante la resonancia vibracional.',
+    price: '$1,500',
+    waText: 'Hola, quiero información sobre Mesas Radiónicas'
+  },
+  {
+    id: 'sanacion-ángeles',
+    name: 'Sanación con Ángeles',
+    icon: 'bi-feather',
+    color: 2,
+    shortDesc: 'Conexión con la jerarquía angélica para recibir guía, protección y sanación amorosa.',
+    fullDesc: 'La Sanación con Ángeles es una práctica espiritual que invoca la presencia y asistencia de los seres angélicos para facilitar procesos de sanación. A través de la conexión con arcángeles como Miguel, Rafael, Gabriel y Uriel, se recibe guía, protección y energía sanadora que ayuda a disolver miedos, liberar cargas y elevar la vibración.',
+    price: '$1,200',
+    waText: 'Hola, quiero información sobre Sanación con Ángeles'
+  },
+  {
+    id: 'numerologia',
+    name: 'Numerología Psicopredictiva',
+    icon: 'bi-123',
+    color: 3,
+    shortDesc: 'Análisis del significado de los números en tu vida para comprender tu camino y potencial.',
+    fullDesc: 'La Numerología Psicopredictiva es una disciplina que estudia la influencia de los números en la personalidad, el destino y los ciclos de vida. Mediante el análisis de tu fecha de nacimiento y tu nombre, se revelan patrones, talentos, desafíos y momentos clave, ofreciendo una hoja de ruta para tu evolución personal.',
+    price: '$1,300',
+    waText: 'Hola, quiero información sobre Numerología Psicopredictiva'
+  },
+  {
+    id: 'cartas-natales',
+    name: 'Cartas Natales',
+    icon: 'bi-globe-americas',
+    color: 4,
+    shortDesc: 'Interpretación detallada de tu carta astral completa con todos los planetas y casas.',
+    fullDesc: 'La Carta Natal es el mapa del cielo en el momento exacto de tu nacimiento. Esta interpretación detallada incluye el análisis de todos los planetas, signos, casas y aspectos, revelando la configuración única de tu ser. Es una herramienta profunda de autoconocimiento que te ayuda a comprender tu propósito, dones y desafíos.',
+    price: '$2,200',
+    waText: 'Hola, quiero información sobre la interpretación de Carta Natal'
+  }
+];
+
+// Services color classes
+const colorClasses = ['c1','c2','c3','c4','c5'];
+
+// Render services
+const grid = document.getElementById('servicesGrid');
+services.forEach((svc, i) => {
+  const col = document.createElement('div');
+  col.className = 'col-md-6 col-lg-4 scroll-fade';
+  col.innerHTML = `
+    <div class="service-card" data-index="${i}" data-bs-toggle="modal" data-bs-target="#serviceModal">
+      <div class="service-icon ${colorClasses[svc.color - 1]}">
+        <i class="bi ${svc.icon}"></i>
+      </div>
+      <h3 class="service-name">${svc.name}</h3>
+      <p class="service-desc">${svc.shortDesc}</p>
+      <button class="btn-vermas">Ver más</button>
+    </div>
+  `;
+  grid.appendChild(col);
+
+  // Store full data for modal
+  col.querySelector('.service-card').addEventListener('click', () => openModal(i));
+});
+
+// ===== COURSES DATA =====
+const courses = [
+  {
+    id: 'tarot-inicial',
+    name: 'Tarot Nivel Inicial',
+    icon: 'bi-card-image',
+    color: 3,
+    shortDesc: 'Aprende los fundamentos del Tarot: arcanos mayores, simbolismo y tiradas básicas.',
+    fullDesc: 'Curso de Tarot Nivel Inicial donde aprenderás los fundamentos de esta milenaria herramienta de autoconocimiento. Explorarás el significado de los 22 arcanos mayores, los símbolos esenciales, y las tiradas básicas para realizar lecturas claras y profundas. Ideal para quienes desean iniciar su camino en el mundo del Tarot.',
+    price: '$3,500',
+    waText: 'Hola, quiero información sobre el curso de Tarot Nivel Inicial'
+  },
+  {
+    id: 'velomancia',
+    name: 'Velomancia',
+    icon: 'bi-fire',
+    color: 1,
+    shortDesc: 'Interpretación de la llama, la cera y el humo de las velas para la adivinación y sanación.',
+    fullDesc: 'La Velomancia es el arte de interpretar los mensajes a través del comportamiento de las velas: la llama, la cera derretida, el humo y los residuos. En este curso aprenderás a leer estos signos para obtener guía espiritual, realizar limpiezas energéticas y conectar con la sabiduría del fuego.',
+    price: '$2,800',
+    waText: 'Hola, quiero información sobre el curso de Velomancia'
+  },
+  {
+    id: 'radiestesia-curso',
+    name: 'Radiestesia',
+    icon: 'bi-activity',
+    color: 2,
+    shortDesc: 'Domina el uso del péndulo y las varillas para diagnóstico y armonización energética.',
+    fullDesc: 'Curso completo de Radiestesia donde aprenderás a utilizar el péndulo, las varillas y otros instrumentos radiestésicos para diagnóstico energético, localización de objetos, armonización de espacios y sanación. Incluye prácticas supervisadas y materiales de estudio.',
+    price: '$3,200',
+    waText: 'Hola, quiero información sobre el curso de Radiestesia'
+  },
+  {
+    id: 'chamanismo-curso',
+    name: 'Chamanismo',
+    icon: 'bi-tree',
+    color: 4,
+    shortDesc: 'Formación en prácticas chamánicas: rituales, plantas de poder y conexión con la naturaleza.',
+    fullDesc: 'Curso de formación en Chamanismo donde aprenderás las bases de las prácticas chamánicas ancestrales: el viaje chamánico, los animales de poder, la rueda medicinal, rituales con plantas sagradas y la conexión profunda con los elementos de la naturaleza. Una formación integral para quienes sienten el llamado de la sabiduría ancestral.',
+    price: '$4,000',
+    waText: 'Hola, quiero información sobre el curso de Chamanismo'
+  }
+];
+
+// Render courses
+const coursesGrid = document.getElementById('coursesGrid');
+courses.forEach((svc, i) => {
+  const col = document.createElement('div');
+  col.className = 'col-md-6 col-lg-3 scroll-fade';
+  col.innerHTML = `
+    <div class="service-card" data-index="${i}" data-bs-toggle="modal" data-bs-target="#serviceModal">
+      <div class="service-icon ${colorClasses[svc.color - 1]}">
+        <i class="bi ${svc.icon}"></i>
+      </div>
+      <h3 class="service-name">${svc.name}</h3>
+      <p class="service-desc">${svc.shortDesc}</p>
+      <button class="btn-vermas">Ver más</button>
+    </div>
+  `;
+  coursesGrid.appendChild(col);
+  col.querySelector('.service-card').addEventListener('click', () => openCourseModal(i));
+});
+
+// Modal handler for services
+function openModal(index) {
+  const svc = services[index];
+  const iconMap = {
+    'bi-tree': '\u{F1F0}',
+    'bi-gem': '\u{F3EC}',
+    'bi-book': '\u{F24A}',
+    'bi-people': '\u{F4C6}',
+    'bi-flower1': '\u{F3D8}',
+    'bi-sun': '\u{F50A}',
+    'bi-stars': '\u{F555}',
+    'bi-card-image': '\u{F28E}',
+    'bi-moon-stars': '\u{F470}',
+    'bi-wind': '\u{F5EE}',
+    'bi-activity': '\u{F041}',
+    'bi-circle': '\u{F2B6}',
+    'bi-hexagon': '\u{F400}',
+    'bi-compass': '\u{F2EE}',
+    'bi-signpost': '\u{F4E7}',
+    'bi-grid-3x3': '\u{F3EA}',
+    'bi-feather': '\u{F3A4}',
+    'bi-123': '\u{F640}',
+    'bi-globe-americas': '\u{F3E2}'
+  };
+
+  document.getElementById('modalIcon').className = `modal-service-icon ${colorClasses[svc.color - 1]}`;
+  document.getElementById('modalIcon').innerHTML = `<i class="bi ${svc.icon}"></i>`;
+  document.getElementById('modalTitle').textContent = svc.name;
+  document.getElementById('modalDesc').textContent = svc.fullDesc;
+  document.getElementById('modalPrice').innerHTML = `${svc.price} <small>por sesión</small>`;
+  document.getElementById('modalWhatsapp').href = `https://wa.me/5491123456789?text=${encodeURIComponent(svc.waText)}`;
+}
+
+function openCourseModal(index) {
+  const svc = courses[index];
+  document.getElementById('modalIcon').className = `modal-service-icon ${colorClasses[svc.color - 1]}`;
+  document.getElementById('modalIcon').innerHTML = `<i class="bi ${svc.icon}"></i>`;
+  document.getElementById('modalTitle').textContent = svc.name;
+  document.getElementById('modalDesc').textContent = svc.fullDesc;
+  document.getElementById('modalPrice').innerHTML = `${svc.price} <small>el curso</small>`;
+  document.getElementById('modalWhatsapp').href = `https://wa.me/5491123456789?text=${encodeURIComponent(svc.waText)}`;
+}
+
+// ===== SCROLL ANIMATION =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+
+// ===== HIEROGLYPH CAROUSEL AUTO =====
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.getElementById('hieroCarousel');
+  if (carousel) {
+    new bootstrap.Carousel(carousel, {
+      interval: 3000,
+      ride: 'carousel',
+      wrap: true
+    });
+  }
+});
+
+// ===== PARTICLES =====
+(function() {
+  const container = document.getElementById('particles');
+  const symbols = ['\u{2625}', '\u{2606}', '\u{2727}', '\u{1F549}', '\u{1F776}'];
+  for (let i = 0; i < 15; i++) {
+    const span = document.createElement('span');
+    span.textContent = symbols[i % symbols.length];
+    span.style.left = Math.random() * 100 + '%';
+    span.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    span.style.animationDuration = (18 + Math.random() * 20) + 's';
+    span.style.animationDelay = (Math.random() * 20) + 's';
+    container.appendChild(span);
+  }
+})();
+
+// ===== FORM =====
+document.getElementById('notifForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('formName').value;
+  const age = document.getElementById('formAge').value;
+  if (name.trim() && age) {
+    document.getElementById('formSuccess').style.display = 'block';
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>
