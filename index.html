@@ -453,9 +453,137 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* ===== HEADER ===== */
+    .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(44,24,16,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+      padding: 0.6rem 0;
+      transition: all 0.3s ease;
+    }
+    .main-header.scrolled {
+      padding: 0.4rem 0;
+      background: rgba(44,24,16,0.98);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .header-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--oro);
+    }
+    .header-logo span {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--oro);
+      letter-spacing: 2px;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .header-nav a {
+      color: rgba(255,248,240,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .header-nav a:hover,
+    .header-nav a.active {
+      color: var(--oro);
+      background: rgba(201,169,110,0.1);
+    }
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--oro);
+      transition: width 0.3s ease;
+    }
+    .header-nav a:hover::after,
+    .header-nav a.active::after {
+      width: 60%;
+    }
+    .header-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--oro);
+      color: var(--oro);
+      font-size: 1.3rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 767px) {
+      .header-toggle { display: block; }
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(44,24,16,0.98);
+        flex-direction: column;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(201,169,110,0.2);
+      }
+      .header-nav.open { display: flex; }
+      .header-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.7rem 1rem;
+      }
+    }
+    body { padding-top: 60px; }
   </style>
 </head>
 <body>
+
+<!-- ===== HEADER ===== -->
+<header class="main-header" id="mainHeader">
+  <div class="header-inner">
+    <a href="#inicio" class="header-logo">
+      <img src="assets/logo.png" alt="Munay">
+      <span>MUNAY</span>
+    </a>
+    <button class="header-toggle" id="headerToggle" aria-label="Menu">&#9776;</button>
+    <nav class="header-nav" id="headerNav">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#notificaciones">Contacto</a>
+    </nav>
+  </div>
+</header>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="inicio">
@@ -967,6 +1095,33 @@ document.getElementById('notifForm').addEventListener('submit', function(e) {
     document.getElementById('formSuccess').style.display = 'block';
     this.reset();
   }
+});
+
+// ===== HEADER =====
+const header = document.getElementById('mainHeader');
+const headerToggle = document.getElementById('headerToggle');
+const headerNav = document.getElementById('headerNav');
+const navLinks = document.querySelectorAll('.header-nav a');
+
+headerToggle.addEventListener('click', () => {
+  headerNav.classList.toggle('open');
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => headerNav.classList.remove('open'));
+});
+
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
 });
 </script>
 </body>
