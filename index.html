@@ -430,17 +430,46 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 991px) {
-      .frase-text { font-size: 0.95rem; max-width: 100%; }
-      .logo-svg { max-width: 260px; margin-top: 2rem; border-width: 2px; }
-      .hero-content { padding: 3rem 0; }
+      .hero { min-height: auto; padding: 6rem 0 4rem; }
+      .hero-content { padding: 2rem 0; }
+      .frase-text { font-size: 0.95rem; max-width: 100%; text-align: center; }
+      .hero-divider { margin: 1.5rem auto; }
+      .logo-svg { max-width: 260px; margin-top: 2rem; }
+      .services-section { padding: 4rem 0; }
+      .section-title { font-size: 1.8rem; }
+      .form-section { padding: 4rem 0; }
     }
     @media (max-width: 767px) {
-      .hero { min-height: auto; }
-      .frase-text { font-size: 0.9rem; text-align: left; }
-      .logo-svg { max-width: 200px; margin-top: 1.5rem; border-width: 2px; }
-      .section-title { font-size: 1.6rem; }
-      .service-card { padding: 1.5rem 1rem; }
-      .form-card { padding: 1.5rem; }
+      .hero { padding: 5rem 0 3rem; }
+      .hero-content { padding: 1.5rem 0; }
+      .frase-text { font-size: 0.88rem; text-align: center; line-height: 1.8; }
+      .logo-svg { max-width: 180px; margin-top: 1.5rem; }
+      .runes-carousel .carousel-item .rune-sym { font-size: 2rem; }
+      .runes-carousel .carousel-control-prev,
+      .runes-carousel .carousel-control-next { width: 30px; }
+      .services-section { padding: 3rem 0; }
+      .section-title { font-size: 1.5rem; }
+      .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
+      .section-divider { margin: 0.8rem auto 2rem; }
+      .service-card { padding: 1.5rem 1rem; border-radius: 12px; }
+      .service-icon { width: 50px; height: 50px; font-size: 1.3rem; }
+      .service-name { font-size: 0.9rem; }
+      .service-desc { font-size: 0.82rem; }
+      .modal-header { padding: 1rem 1.2rem; }
+      .modal-body { padding: 1.2rem; }
+      .form-section { padding: 3rem 0; }
+      .form-card { padding: 1.5rem; border-radius: 14px; }
+      .btn-whatsapp { padding: 0.6rem 1.5rem; font-size: 0.88rem; }
+      .site-footer { padding: 1.5rem 0; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 4.5rem 0 2.5rem; }
+      .frase-text { font-size: 0.82rem; }
+      .logo-svg { max-width: 150px; }
+      .runes-carousel .carousel-item .rune-sym { font-size: 1.6rem; }
+      .section-title { font-size: 1.3rem; }
+      .service-card { padding: 1.2rem 0.8rem; }
+      .form-card { padding: 1.2rem; }
     }
 
     /* ===== SCROLL ANIMATIONS ===== */
