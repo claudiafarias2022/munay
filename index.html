@@ -110,47 +110,26 @@
     }
 
     /* ===== CAROUSEL HIEROGLYPHS ===== */
-    /* ===== RUNES STRIP ===== */
-    .runes-section {
-      background: linear-gradient(180deg, #1a0f0a 0%, #2C1810 100%);
-      padding: 1.8rem 0;
-      border-top: 1px solid rgba(201,169,110,0.12);
-      border-bottom: 1px solid rgba(201,169,110,0.12);
-      overflow: hidden;
-    }
-    .runes-track {
+    /* ===== RUNES BAR (dentro del cover) ===== */
+    .runes-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
-      gap: 3rem;
-      animation: scrollRunes 40s linear infinite;
-      width: max-content;
+      justify-content: center;
+      gap: 2.2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.3));
+      flex-wrap: wrap;
     }
-    .runes-track:hover { animation-play-state: paused; }
-    @keyframes scrollRunes {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .rune-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-      flex-shrink: 0;
-    }
-    .rune-item .rune-symbol {
-      font-size: 2.6rem;
+    .runes-bar .rune-sym {
+      font-size: 1.6rem;
       color: var(--oro);
-      opacity: 0.6;
+      opacity: 0.35;
       transition: opacity 0.3s;
     }
-    .rune-item:hover .rune-symbol { opacity: 0.9; }
-    .rune-item .rune-label {
-      font-size: 0.55rem;
-      color: rgba(255,248,240,0.25);
-      letter-spacing: 1.5px;
-      font-family: 'Cinzel', serif;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+    .runes-bar .rune-sym:hover { opacity: 0.7; }
 
     /* ===== SERVICES ===== */
     .services-section {
@@ -423,8 +402,8 @@
       .logo-svg { max-width: 200px; margin-top: 1.5rem; }
       .section-title { font-size: 1.6rem; }
       .service-card { padding: 1.5rem 1rem; }
-      .rune-item .rune-symbol { font-size: 2rem; }
-      .rune-item .rune-label { font-size: 0.45rem; }
+      .runes-bar { gap: 1.4rem; padding: 0.8rem 1rem; }
+      .runes-bar .rune-sym { font-size: 1.2rem; }
       .form-card { padding: 1.5rem; }
     }
 
@@ -454,7 +433,6 @@
             el amor íntegro, el amor que abarca, el poder, la compasión, la alegría, la sexualidad,
             nuestras responsabilidades con nosotros mismos y con el mundo que nos rodea y la sociedad
             en la que nos movemos, el amor al prójimo sin juicios, sin condena.
-            <br><br>
             Es la fuerza que nos hace ver la vida con los ojos del alma,
             descubriendo cada día lo hermoso de vivir con las batallas externas.
           </div>
@@ -571,11 +549,8 @@
       </div>
     </div>
   </div>
-</section>
-
-<!-- ===== RUNES STRIP ===== -->
-<section class="runes-section">
-  <div class="runes-track" id="runesTrack"></div>
+  <!-- Runas al final del cover -->
+  <div class="runes-bar" id="runesBar"></div>
 </section>
 
 <!-- ===== SERVICES ===== -->
@@ -1002,29 +977,11 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
-// ===== RUNES STRIP =====
+// ===== RUNES BAR =====
 (function() {
-  const track = document.getElementById('runesTrack');
-  const runes = [
-    { sym: 'ᚠ', name: 'Fehu' }, { sym: 'ᚢ', name: 'Uruz' }, { sym: 'ᚦ', name: 'Thurisaz' },
-    { sym: 'ᚨ', name: 'Ansuz' }, { sym: 'ᚱ', name: 'Raidho' }, { sym: 'ᚲ', name: 'Kenaz' },
-    { sym: 'ᚷ', name: 'Gebo' }, { sym: 'ᚹ', name: 'Wunjo' }, { sym: 'ᚺ', name: 'Hagalaz' },
-    { sym: 'ᚾ', name: 'Nauthiz' }, { sym: 'ᛁ', name: 'Isa' }, { sym: 'ᛃ', name: 'Jera' },
-    { sym: 'ᛇ', name: 'Eihwaz' }, { sym: 'ᛈ', name: 'Perthro' }, { sym: 'ᛉ', name: 'Algiz' },
-    { sym: 'ᛊ', name: 'Sowilo' }, { sym: 'ᛏ', name: 'Tiwaz' }, { sym: 'ᛒ', name: 'Berkano' },
-    { sym: 'ᛖ', name: 'Ehwaz' }, { sym: 'ᛗ', name: 'Mannaz' }, { sym: 'ᛚ', name: 'Laguz' },
-    { sym: 'ᛝ', name: 'Ingwaz' }, { sym: 'ᛟ', name: 'Othala' }, { sym: 'ᛞ', name: 'Dagaz' },
-    { sym: '☥', name: 'Ankh' }, { sym: '☉', name: 'Sol' }, { sym: '☽', name: 'Luna' },
-    { sym: '⚜', name: 'Flor de Lis' }, { sym: '✧', name: 'Flor de Vida' }, { sym: '🜁', name: 'Aire' },
-  ];
-  function buildRunes() {
-    let html = '';
-    for (let r of runes) {
-      html += '<div class="rune-item"><span class="rune-symbol">' + r.sym + '</span><span class="rune-label">' + r.name + '</span></div>';
-    }
-    track.innerHTML = html + html;
-  }
-  buildRunes();
+  const bar = document.getElementById('runesBar');
+  const runes = ['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ','ᛈ','ᛉ','ᛊ','ᛏ','ᛒ','ᛖ','ᛗ','ᛚ','ᛝ','ᛟ','ᛞ','☥','☉','☽','⚜','✧'];
+  bar.innerHTML = runes.map(r => '<span class="rune-sym">' + r + '</span>').join('');
 })();
 
 // ===== PARTICLES =====
