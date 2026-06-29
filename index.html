@@ -480,66 +480,219 @@
         </div>
         <div class="col-lg-6">
           <div class="logo-container">
-            <svg class="logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Ring exterior -->
-              <circle cx="200" cy="200" r="175" fill="none" stroke="url(#ringGrad)" stroke-width="8" opacity="0.6"/>
-              <circle cx="200" cy="200" r="165" fill="none" stroke="url(#ringGrad2)" stroke-width="2" opacity="0.3"/>
-              <!-- Fondo crema interior -->
-              <circle cx="200" cy="200" r="160" fill="#F5EDE0" opacity="0.95"/>
-              <!-- Estrella superior -->
-              <polygon points="200,45 208,72 237,72 213,88 222,117 200,99 178,117 187,88 163,72 192,72"
-                fill="#5BA3A6" opacity="0.9"/>
-              <!-- Corazón -->
-              <path d="M200 290 C200 290 145 245 145 210 C145 190 160 175 180 175 C190 175 197 181 200 188 C203 181 210 175 220 175 C240 175 255 190 255 210 C255 245 200 290 200 290Z"
-                fill="#C0392B" stroke="#8B4513" stroke-width="1.5"/>
-              <!-- Llamas -->
-              <path d="M200 175 Q190 155 185 140 Q180 125 190 115 Q195 120 198 130 L200 140 L202 130 Q205 120 210 115 Q220 125 215 140 Q210 155 200 175Z"
-                fill="#E67E22" opacity="0.8"/>
-              <path d="M200 175 Q193 160 188 148 Q185 138 192 130 Q196 138 198 148 L200 155 L202 148 Q204 138 208 130 Q215 138 212 148 Q207 160 200 175Z"
-                fill="#F1C40F" opacity="0.7"/>
-              <!-- Rosa -->
-              <ellipse cx="200" cy="115" rx="10" ry="8" fill="#D2B4DE" stroke="#9B59B6" stroke-width="0.8"/>
-              <ellipse cx="195" cy="113" rx="6" ry="5" fill="#E8DAEF" stroke="#9B59B6" stroke-width="0.5"/>
-              <ellipse cx="205" cy="113" rx="6" ry="5" fill="#E8DAEF" stroke="#9B59B6" stroke-width="0.5"/>
-              <ellipse cx="200" cy="109" rx="5" ry="4" fill="#F5EEF8"/>
-              <!-- M central -->
-              <path d="M180 230 L188 260 L200 240 L212 260 L220 230"
-                fill="none" stroke="#5BA3A6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M180 230 L188 260 L200 240 L212 260 L220 230"
-                fill="none" stroke="#D4E6E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
-              <!-- U semicírculo -->
-              <path d="M185 265 Q185 290 200 290 Q215 290 215 265"
-                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round"/>
-              <path d="M170 275 Q170 295 200 295 Q230 295 230 275"
-                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round"/>
-              <!-- N -->
-              <path d="M235 270 L235 295 L252 270 L252 295"
-                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- A -->
-              <path d="M257 295 L262 270 L267 295 M259 284 L265 284"
-                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Y -->
-              <path d="M272 270 L280 282 L288 270 M280 282 L280 295"
-                fill="none" stroke="#5BA3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Follaje sutil derecha -->
-              <path d="M310 230 Q325 220 320 200 Q315 185 300 195 Q290 205 295 220 Q298 230 310 230Z"
-                fill="#8FA88A" opacity="0.15"/>
-              <path d="M320 215 Q330 210 328 195 Q325 182 315 190 Q308 198 312 210Z"
-                fill="#8FA88A" opacity="0.1"/>
-              <!-- Iluminación -->
-              <ellipse cx="180" cy="180" rx="80" ry="60" fill="white" opacity="0.04"/>
-              <!-- Gradientes -->
+            <svg class="logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <!-- Filtro textura madera -->
+                <filter id="woodTexture" x="-10%" y="-10%" width="120%" height="120%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.01 0.15" numOctaves="3" result="noise"/>
+                  <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+                  <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="textured"/>
+                  <feComposite in="textured" in2="SourceGraphic" operator="in"/>
+                </filter>
+                <filter id="carvedShadow">
+                  <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#2C1810" flood-opacity="0.4"/>
+                </filter>
+                <filter id="innerGlow">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+                <!-- Gradientes madera -->
+                <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FDF6EC"/>
+                  <stop offset="70%" stop-color="#F5EDE0"/>
+                  <stop offset="100%" stop-color="#E8DCC8"/>
+                </radialGradient>
+                <linearGradient id="ringWood" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stop-color="#C9A96E"/>
-                  <stop offset="50%" stop-color="#8B6914"/>
+                  <stop offset="20%" stop-color="#B8924E"/>
+                  <stop offset="40%" stop-color="#D4B87A"/>
+                  <stop offset="60%" stop-color="#A8894E"/>
+                  <stop offset="80%" stop-color="#C9A96E"/>
+                  <stop offset="100%" stop-color="#8B6914"/>
+                </linearGradient>
+                <linearGradient id="ringInner" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D4B87A"/>
+                  <stop offset="50%" stop-color="#B8924E"/>
                   <stop offset="100%" stop-color="#C9A96E"/>
                 </linearGradient>
-                <linearGradient id="ringGrad2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#D4A86A"/>
-                  <stop offset="100%" stop-color="#A8894E"/>
+                <!-- Gradiente corazón madera -->
+                <radialGradient id="heartGrad" cx="40%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#E84A3B"/>
+                  <stop offset="40%" stop-color="#C0392B"/>
+                  <stop offset="80%" stop-color="#A93226"/>
+                  <stop offset="100%" stop-color="#7B241C"/>
+                </radialGradient>
+                <!-- Gradiente llamas -->
+                <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stop-color="#E67E22"/>
+                  <stop offset="50%" stop-color="#F39C12"/>
+                  <stop offset="100%" stop-color="#F1C40F"/>
+                </linearGradient>
+                <!-- Gradiente rosa -->
+                <radialGradient id="roseGrad" cx="50%" cy="30%" r="60%">
+                  <stop offset="0%" stop-color="#E8DAEF"/>
+                  <stop offset="40%" stop-color="#D2B4DE"/>
+                  <stop offset="80%" stop-color="#BB8FCE"/>
+                  <stop offset="100%" stop-color="#9B59B6"/>
+                </radialGradient>
+                <!-- Gradiente turquesa madera -->
+                <linearGradient id="turqWood" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#6BB5B8"/>
+                  <stop offset="30%" stop-color="#5BA3A6"/>
+                  <stop offset="60%" stop-color="#4A9094"/>
+                  <stop offset="100%" stop-color="#3D7A7D"/>
+                </linearGradient>
+                <linearGradient id="turqLight" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D4E6E6"/>
+                  <stop offset="50%" stop-color="#A8D0D0"/>
+                  <stop offset="100%" stop-color="#8BBDBD"/>
+                </linearGradient>
+                <!-- Gradiente estrella -->
+                <linearGradient id="starGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7EC8C8"/>
+                  <stop offset="100%" stop-color="#5BA3A6"/>
+                </linearGradient>
+                <!-- Filtro iluminación estudio -->
+                <radialGradient id="lightGlow" cx="35%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="white" stop-opacity="0.15"/>
+                  <stop offset="50%" stop-color="white" stop-opacity="0.03"/>
+                  <stop offset="100%" stop-color="white" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="shadowBottom" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="black" stop-opacity="0"/>
+                  <stop offset="100%" stop-color="black" stop-opacity="0.08"/>
                 </linearGradient>
               </defs>
+
+              <!-- Sombra exterior -->
+              <circle cx="200" cy="202" r="177" fill="rgba(0,0,0,0.15)" filter="url(#carvedShadow)"/>
+
+              <!-- Anillo exterior madera -->
+              <circle cx="200" cy="200" r="177" fill="url(#ringWood)" filter="url(#woodTexture)"/>
+              <circle cx="200" cy="200" r="177" fill="none" stroke="#8B6914" stroke-width="1.5" opacity="0.4"/>
+              <circle cx="200" cy="200" r="177" fill="url(#lightGlow)"/>
+
+              <!-- Borde interno del anillo -->
+              <circle cx="200" cy="200" r="163" fill="url(#ringInner)" filter="url(#woodTexture)"/>
+              <circle cx="200" cy="200" r="163" fill="none" stroke="#A8894E" stroke-width="1.5" opacity="0.3"/>
+
+              <!-- Fondo crema interior -->
+              <circle cx="200" cy="200" r="160" fill="url(#bgGrad)"/>
+              <circle cx="200" cy="200" r="160" fill="url(#lightGlow)"/>
+              <circle cx="200" cy="200" r="160" fill="url(#shadowBottom)"/>
+
+              <!-- Textura sutil fondo -->
+              <circle cx="200" cy="200" r="160" fill="url(#bgGrad)" filter="url(#woodTexture)" opacity="0.06"/>
+
+              <!-- Follaje derecho -->
+              <g opacity="0.12" filter="url(#carvedShadow)">
+                <path d="M300 230 Q315 215 310 195 Q305 178 290 185 Q278 195 282 215 Q285 228 300 230Z" fill="#5BA3A6"/>
+                <path d="M315 215 Q328 205 325 188 Q322 174 310 182 Q302 192 308 210Z" fill="#4A9094"/>
+                <path d="M325 200 Q335 192 332 178 Q330 168 320 174 Q314 182 318 195Z" fill="#5BA3A6" opacity="0.6"/>
+              </g>
+
+              <!-- Estrella superior madera -->
+              <g filter="url(#carvedShadow)">
+                <polygon points="200,42 206,65 230,65 210,78 218,102 200,86 182,102 190,78 170,65 194,65"
+                  fill="url(#starGrad)" stroke="#D4E6E6" stroke-width="1.5" opacity="0.9"/>
+                <polygon points="200,42 206,65 230,65 210,78 218,102 200,86 182,102 190,78 170,65 194,65"
+                  fill="url(#starGrad)" filter="url(#woodTexture)" opacity="0.4"/>
+                <polygon points="200,48 204,65 222,65 208,74 213,92 200,80 187,92 192,74 178,65 196,65"
+                  fill="url(#turqLight)" opacity="0.25"/>
+              </g>
+
+              <!-- Rosa tallada -->
+              <g filter="url(#carvedShadow)">
+                <!-- Pétalos exteriores -->
+                <ellipse cx="188" cy="112" rx="14" ry="10" fill="url(#roseGrad)" transform="rotate(-20 188 112)"/>
+                <ellipse cx="212" cy="112" rx="14" ry="10" fill="url(#roseGrad)" transform="rotate(20 212 112)"/>
+                <ellipse cx="200" cy="108" rx="12" ry="11" fill="url(#roseGrad)"/>
+                <!-- Pétalos medios -->
+                <ellipse cx="194" cy="106" rx="8" ry="7" fill="#E8DAEF" transform="rotate(-15 194 106)"/>
+                <ellipse cx="206" cy="106" rx="8" ry="7" fill="#E8DAEF" transform="rotate(15 206 106)"/>
+                <!-- Centro rosa -->
+                <ellipse cx="200" cy="104" rx="6" ry="5" fill="#F5EEF8"/>
+                <ellipse cx="198" cy="103" rx="3" ry="2.5" fill="white" opacity="0.4"/>
+                <!-- Detalle pétalos -->
+                <path d="M188 108 Q192 100 200 102 Q205 98 212 108" fill="none" stroke="#9B59B6" stroke-width="0.6" opacity="0.4"/>
+                <path d="M195 110 Q200 104 205 110" fill="none" stroke="#9B59B6" stroke-width="0.5" opacity="0.3"/>
+              </g>
+
+              <!-- Llamas -->
+              <g filter="url(#carvedShadow)">
+                <!-- Llama externa -->
+                <path d="M200 172 Q188 148 182 130 Q176 112 186 102 Q192 110 196 125 L200 138 L204 125 Q208 110 214 102 Q224 112 218 130 Q212 148 200 172Z"
+                  fill="#E67E22" opacity="0.85"/>
+                <path d="M200 172 Q188 148 182 130 Q176 112 186 102 Q192 110 196 125 L200 138 L204 125 Q208 110 214 102 Q224 112 218 130 Q212 148 200 172Z"
+                  fill="url(#flameGrad)" opacity="0.5"/>
+                <!-- Llama interna -->
+                <path d="M200 168 Q192 152 188 138 Q184 125 192 118 Q196 125 198 136 L200 146 L202 136 Q204 125 208 118 Q216 125 212 138 Q208 152 200 168Z"
+                  fill="#F1C40F" opacity="0.8"/>
+                <!-- Destello blanco -->
+                <path d="M200 162 Q196 152 194 144 Q192 138 196 134 Q198 140 200 148 L200 154 L200 148 Q202 140 204 134 Q208 138 206 144 Q204 152 200 162Z"
+                  fill="white" opacity="0.3"/>
+              </g>
+
+              <!-- Corazón madera -->
+              <g filter="url(#carvedShadow)">
+                <path d="M200 295 C200 295 138 248 138 210 C138 186 155 170 178 170 C190 170 198 177 200 185 C202 177 210 170 222 170 C245 170 262 186 262 210 C262 248 200 295 200 295Z"
+                  fill="url(#heartGrad)" stroke="#7B241C" stroke-width="1.5"/>
+                <path d="M200 295 C200 295 138 248 138 210 C138 186 155 170 178 170 C190 170 198 177 200 185 C202 177 210 170 222 170 C245 170 262 186 262 210 C262 248 200 295 200 295Z"
+                  fill="url(#heartGrad)" filter="url(#woodTexture)" opacity="0.25"/>
+                <!-- Brillo corazón -->
+                <path d="M155 200 Q165 180 185 178 Q190 178 193 182 Q180 195 170 215 Q162 210 155 200Z"
+                  fill="white" opacity="0.08"/>
+              </g>
+
+              <!-- M central turquesa tallada -->
+              <g filter="url(#carvedShadow)">
+                <!-- Sombra M -->
+                <path d="M175 232 L184 265 L200 242 L216 265 L225 232"
+                  fill="none" stroke="#2C5F5F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"
+                  transform="translate(1,2)"/>
+                <!-- Cuerpo M -->
+                <path d="M175 232 L184 265 L200 242 L216 265 L225 232"
+                  fill="none" stroke="url(#turqWood)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Borde claro M -->
+                <path d="M175 232 L184 265 L200 242 L216 265 L225 232"
+                  fill="none" stroke="url(#turqLight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                <!-- Brillo M -->
+                <path d="M180 236 L187 258 L200 240 L213 258 L220 236"
+                  fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.12"/>
+              </g>
+
+              <!-- Letras U N A Y semicírculo -->
+              <g filter="url(#carvedShadow)">
+                <!-- U -->
+                <path d="M160 276 Q160 298 178 298 Q196 298 196 276"
+                  fill="none" stroke="url(#turqWood)" stroke-width="7" stroke-linecap="round"/>
+                <path d="M160 276 Q160 298 178 298 Q196 298 196 276"
+                  fill="none" stroke="url(#turqLight)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+                <!-- N -->
+                <path d="M200 276 L200 298 L218 276 L218 298"
+                  fill="none" stroke="url(#turqWood)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M200 276 L200 298 L218 276 L218 298"
+                  fill="none" stroke="url(#turqLight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+
+                <!-- A -->
+                <path d="M224 298 L232 276 L240 298 M226 288 L238 288"
+                  fill="none" stroke="url(#turqWood)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M224 298 L232 276 L240 298 M226 288 L238 288"
+                  fill="none" stroke="url(#turqLight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+
+                <!-- Y -->
+                <path d="M246 276 L256 290 L266 276 M256 290 L256 298"
+                  fill="none" stroke="url(#turqWood)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M246 276 L256 290 L266 276 M256 290 L256 298"
+                  fill="none" stroke="url(#turqLight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+              </g>
+
+              <!-- Iluminación de estudio (overlay) -->
+              <circle cx="200" cy="200" r="177" fill="url(#lightGlow)"/>
+
+              <!-- Reflejo especular superior izquierdo -->
+              <ellipse cx="155" cy="140" rx="60" ry="40" fill="white" opacity="0.04" transform="rotate(-30 155 140)"/>
             </svg>
           </div>
         </div>
