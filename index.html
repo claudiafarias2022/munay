@@ -110,66 +110,46 @@
     }
 
     /* ===== CAROUSEL HIEROGLYPHS ===== */
-    .hiero-section {
+    /* ===== RUNES STRIP ===== */
+    .runes-section {
       background: linear-gradient(180deg, #1a0f0a 0%, #2C1810 100%);
-      padding: 2.5rem 0 3rem;
-      border-top: 1px solid rgba(201,169,110,0.15);
-      border-bottom: 1px solid rgba(201,169,110,0.15);
+      padding: 1.8rem 0;
+      border-top: 1px solid rgba(201,169,110,0.12);
+      border-bottom: 1px solid rgba(201,169,110,0.12);
+      overflow: hidden;
     }
-    .hiero-section h3 {
+    .runes-track {
+      display: flex;
+      gap: 3rem;
+      animation: scrollRunes 40s linear infinite;
+      width: max-content;
+    }
+    .runes-track:hover { animation-play-state: paused; }
+    @keyframes scrollRunes {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .rune-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      flex-shrink: 0;
+    }
+    .rune-item .rune-symbol {
+      font-size: 2.6rem;
       color: var(--oro);
-      font-size: 0.85rem;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
       opacity: 0.6;
-    }
-    .hiero-carousel {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .hiero-carousel .carousel-item {
-      text-align: center;
-      padding: 1rem 0;
-    }
-    .hiero-carousel .carousel-item .hiero-symbol {
-      font-size: 5rem;
-      line-height: 1.2;
-      display: block;
-      color: var(--oro);
-      opacity: 0.7;
       transition: opacity 0.3s;
     }
-    .hiero-carousel .carousel-item .hiero-label {
-      display: block;
-      color: rgba(255,248,240,0.4);
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      margin-top: 0.5rem;
+    .rune-item:hover .rune-symbol { opacity: 0.9; }
+    .rune-item .rune-label {
+      font-size: 0.55rem;
+      color: rgba(255,248,240,0.25);
+      letter-spacing: 1.5px;
       font-family: 'Cinzel', serif;
-    }
-    .hiero-carousel .carousel-control-prev,
-    .hiero-carousel .carousel-control-next {
-      width: 50px;
-      opacity: 0.3;
-    }
-    .hiero-carousel .carousel-control-prev:hover,
-    .hiero-carousel .carousel-control-next:hover { opacity: 0.7; }
-    .hiero-carousel .carousel-indicators {
-      position: static;
-      margin-top: 1rem;
-    }
-    .hiero-carousel .carousel-indicators button {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 1px solid var(--oro);
-      background: transparent;
-      opacity: 0.3;
-    }
-    .hiero-carousel .carousel-indicators button.active {
-      background: var(--oro);
-      opacity: 0.8;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     /* ===== SERVICES ===== */
@@ -443,7 +423,8 @@
       .logo-svg { max-width: 200px; margin-top: 1.5rem; }
       .section-title { font-size: 1.6rem; }
       .service-card { padding: 1.5rem 1rem; }
-      .hiero-carousel .carousel-item .hiero-symbol { font-size: 3.5rem; }
+      .rune-item .rune-symbol { font-size: 2rem; }
+      .rune-item .rune-label { font-size: 0.45rem; }
       .form-card { padding: 1.5rem; }
     }
 
@@ -592,48 +573,9 @@
   </div>
 </section>
 
-<!-- ===== HIEROGLYPH CAROUSEL ===== -->
-<section class="hiero-section">
-  <div class="container">
-    <h3 class="text-center">Símbolos Sagrados</h3>
-    <div id="hieroCarousel" class="carousel slide hiero-carousel" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="2"></button>
-        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="3"></button>
-        <button type="button" data-bs-target="#hieroCarousel" data-bs-slide-to="4"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <span class="hiero-symbol">&#x2625;</span>
-          <span class="hiero-label">ANKH · Vida Eterna</span>
-        </div>
-        <div class="carousel-item">
-          <span class="hiero-symbol">&#x1F776;</span>
-          <span class="hiero-label">OJO DE HORUS · Protección</span>
-        </div>
-        <div class="carousel-item">
-          <span class="hiero-symbol">&#x2606;</span>
-          <span class="hiero-label">ESTRELLA · Guía Espiritual</span>
-        </div>
-        <div class="carousel-item">
-          <span class="hiero-symbol">&#x1F549;</span>
-          <span class="hiero-label">OM · Vibración Universal</span>
-        </div>
-        <div class="carousel-item">
-          <span class="hiero-symbol">&#x2727;</span>
-          <span class="hiero-label">FLOR DE LA VIDA · Creación</span>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#hieroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#hieroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
-  </div>
+<!-- ===== RUNES STRIP ===== -->
+<section class="runes-section">
+  <div class="runes-track" id="runesTrack"></div>
 </section>
 
 <!-- ===== SERVICES ===== -->
@@ -1060,17 +1002,30 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
-// ===== HIEROGLYPH CAROUSEL AUTO =====
-document.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.getElementById('hieroCarousel');
-  if (carousel) {
-    new bootstrap.Carousel(carousel, {
-      interval: 3000,
-      ride: 'carousel',
-      wrap: true
-    });
+// ===== RUNES STRIP =====
+(function() {
+  const track = document.getElementById('runesTrack');
+  const runes = [
+    { sym: 'ᚠ', name: 'Fehu' }, { sym: 'ᚢ', name: 'Uruz' }, { sym: 'ᚦ', name: 'Thurisaz' },
+    { sym: 'ᚨ', name: 'Ansuz' }, { sym: 'ᚱ', name: 'Raidho' }, { sym: 'ᚲ', name: 'Kenaz' },
+    { sym: 'ᚷ', name: 'Gebo' }, { sym: 'ᚹ', name: 'Wunjo' }, { sym: 'ᚺ', name: 'Hagalaz' },
+    { sym: 'ᚾ', name: 'Nauthiz' }, { sym: 'ᛁ', name: 'Isa' }, { sym: 'ᛃ', name: 'Jera' },
+    { sym: 'ᛇ', name: 'Eihwaz' }, { sym: 'ᛈ', name: 'Perthro' }, { sym: 'ᛉ', name: 'Algiz' },
+    { sym: 'ᛊ', name: 'Sowilo' }, { sym: 'ᛏ', name: 'Tiwaz' }, { sym: 'ᛒ', name: 'Berkano' },
+    { sym: 'ᛖ', name: 'Ehwaz' }, { sym: 'ᛗ', name: 'Mannaz' }, { sym: 'ᛚ', name: 'Laguz' },
+    { sym: 'ᛝ', name: 'Ingwaz' }, { sym: 'ᛟ', name: 'Othala' }, { sym: 'ᛞ', name: 'Dagaz' },
+    { sym: '☥', name: 'Ankh' }, { sym: '☉', name: 'Sol' }, { sym: '☽', name: 'Luna' },
+    { sym: '⚜', name: 'Flor de Lis' }, { sym: '✧', name: 'Flor de Vida' }, { sym: '🜁', name: 'Aire' },
+  ];
+  function buildRunes() {
+    let html = '';
+    for (let r of runes) {
+      html += '<div class="rune-item"><span class="rune-symbol">' + r.sym + '</span><span class="rune-label">' + r.name + '</span></div>';
+    }
+    track.innerHTML = html + html;
   }
-});
+  buildRunes();
+})();
 
 // ===== PARTICLES =====
 (function() {
