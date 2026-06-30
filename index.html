@@ -422,13 +422,15 @@
       .form-section { padding: 4rem 0; }
     }
     @media (max-width: 767px) {
-      .hero { padding: 5rem 0 6rem; }
-      .hero-content { padding: 1.5rem 0 3rem; }
-      .services-section .container { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .hero { padding: 5rem 0 5rem; }
+      .hero-content { padding: 1.5rem 0 2rem; }
+      .col-logo { order: -1; margin-bottom: 1.5rem; }
       .frase-text { font-size: 0.88rem; text-align: center; line-height: 1.8; }
-      .logo-svg { max-width: 180px; margin-top: 1rem; margin-bottom: 1rem; }
+      .logo-svg { max-width: 180px; margin-top: 0; margin-bottom: 0; }
+      .hero-divider { margin: 1rem auto; }
       .runes-scroll { padding: 0.8rem 0; }
       .runes-track span { font-size: 2rem; }
+      .services-section .container { padding-left: 1.2rem; padding-right: 1.2rem; }
       .services-section { padding: 3rem 0; }
       .section-title { font-size: 1.5rem; }
       .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
@@ -614,7 +616,7 @@
           </div>
           <div class="hero-divider"></div>
         </div>
-        <div class="col-lg-6 d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 d-flex justify-content-center align-items-center col-logo">
           <div class="logo-container">
             <img class="logo-svg" src="assets/logo.png" alt="Munay Logo">
           </div>
@@ -1063,7 +1065,7 @@ document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 // ===== PARTICLES =====
 (function() {
   const container = document.getElementById('particles');
-  const symbols = ['\u{2625}', '\u{2606}', '\u{2727}', '\u{1F549}', '\u{1F776}'];
+  const symbols = ['\u{2625}', '\u{2606}', '\u{2727}', '\u{1F549}', '\u{2721}'];
   for (let i = 0; i < 15; i++) {
     const span = document.createElement('span');
     span.textContent = symbols[i % symbols.length];
