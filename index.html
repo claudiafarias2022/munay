@@ -121,45 +121,34 @@
 
     /* ===== CAROUSEL HIEROGLYPHS ===== */
     /* ===== RUNES CAROUSEL (dentro del cover) ===== */
-    .runes-carousel {
+    /* ===== RUNES SCROLL ===== */
+    .runes-scroll {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 1.2rem 0;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.35));
+      padding: 1rem 0;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
+      overflow: hidden;
     }
-    .runes-carousel .carousel-inner { max-width: 800px; margin: 0 auto; }
-    .runes-carousel .carousel-item { text-align: center; }
-    .runes-carousel .carousel-item .rune-sym {
-      font-size: 3.2rem;
+    .runes-track {
+      display: flex;
+      width: max-content;
+      animation: scrollRunes 30s linear infinite;
+    }
+    .runes-track:hover { animation-play-state: paused; }
+    .runes-track span {
+      font-size: 2.5rem;
       color: var(--oro);
-      opacity: 0.55;
-      display: block;
+      opacity: 0.5;
+      white-space: nowrap;
+      padding: 0 1.5rem;
       transition: opacity 0.3s;
     }
-    .runes-carousel .carousel-control-prev,
-    .runes-carousel .carousel-control-next {
-      width: 40px;
-      opacity: 0.2;
-    }
-    .runes-carousel .carousel-control-prev:hover,
-    .runes-carousel .carousel-control-next:hover { opacity: 0.6; }
-    .runes-carousel .carousel-indicators {
-      position: static;
-      margin-top: 0.5rem;
-    }
-    .runes-carousel .carousel-indicators button {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1px solid var(--oro);
-      background: transparent;
-      opacity: 0.3;
-    }
-    .runes-carousel .carousel-indicators button.active {
-      background: var(--oro);
-      opacity: 0.8;
+    .runes-track span:hover { opacity: 0.9; }
+    @keyframes scrollRunes {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* ===== SERVICES ===== */
@@ -438,10 +427,8 @@
       .services-section .container { padding-left: 1.2rem; padding-right: 1.2rem; }
       .frase-text { font-size: 0.88rem; text-align: center; line-height: 1.8; }
       .logo-svg { max-width: 180px; margin-top: 1rem; margin-bottom: 1rem; }
-      .runes-carousel { padding: 0.8rem 0; }
-      .runes-carousel .carousel-item .rune-sym { font-size: 2rem; }
-      .runes-carousel .carousel-control-prev,
-      .runes-carousel .carousel-control-next { width: 30px; }
+      .runes-scroll { padding: 0.8rem 0; }
+      .runes-track span { font-size: 2rem; }
       .services-section { padding: 3rem 0; }
       .section-title { font-size: 1.5rem; }
       .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
@@ -463,8 +450,8 @@
       .services-section .container { padding-left: 1rem; padding-right: 1rem; }
       .frase-text { font-size: 0.82rem; }
       .logo-svg { max-width: 150px; margin-top: 0.8rem; margin-bottom: 0.8rem; }
-      .runes-carousel { padding: 0.6rem 0; }
-      .runes-carousel .carousel-item .rune-sym { font-size: 1.6rem; }
+      .runes-scroll { padding: 0.6rem 0; }
+      .runes-track span { font-size: 1.6rem; }
       .section-title { font-size: 1.3rem; }
       .service-card { padding: 1.2rem 0.8rem; }
       .form-card { padding: 1.2rem; }
@@ -637,34 +624,9 @@
       </div>
     </div>
   </div>
-  <!-- Runas carousel al final del cover -->
-  <div id="runesCarousel" class="carousel slide runes-carousel" data-bs-ride="carousel" data-bs-interval="4000">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <span class="rune-sym">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ</span>
-      </div>
-      <div class="carousel-item">
-        <span class="rune-sym">ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ</span>
-      </div>
-      <div class="carousel-item">
-        <span class="rune-sym">ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ</span>
-      </div>
-      <div class="carousel-item">
-        <span class="rune-sym">ᛝ ᛟ ᛞ ☥ ☉ ☽ ⚜ ✧</span>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#runesCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#runesCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#runesCarousel" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#runesCarousel" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#runesCarousel" data-bs-slide-to="2"></button>
-      <button type="button" data-bs-target="#runesCarousel" data-bs-slide-to="3"></button>
-    </div>
+  <!-- Runas infinite scroll -->
+  <div class="runes-scroll">
+    <div class="runes-track" id="runesTrack"></div>
   </div>
 </section>
 
@@ -1092,11 +1054,13 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
-// ===== RUNES CAROUSEL =====
-const runesCarousel = document.getElementById('runesCarousel');
-if (runesCarousel) {
-  new bootstrap.Carousel(runesCarousel, { interval: 4000, ride: 'carousel' });
-}
+// ===== RUNES INFINITE SCROLL =====
+(function() {
+  const track = document.getElementById('runesTrack');
+  const runes = ['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ','ᛈ','ᛉ','ᛊ','ᛏ','ᛒ','ᛖ','ᛗ','ᛚ','ᛝ','ᛟ','ᛞ','☥','☉','☽','⚜','✧'];
+  const html = runes.map(r => `<span>${r}</span>`).join('');
+  track.innerHTML = html + html;
+})();
 
 // ===== PARTICLES =====
 (function() {
