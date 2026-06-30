@@ -1065,8 +1065,8 @@ document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 // ===== PARTICLES =====
 (function() {
   const container = document.getElementById('particles');
-  const symbols = ['\u{2625}', '\u{2606}', '\u{2727}', '\u{2721}', '\u{2736}'];
-  for (let i = 0; i < 15; i++) {
+  const symbols = ['\u2726', '\u2727', '\u2728', '\u2736', '\u2738'];
+  for (let i = 0; i < 10; i++) {
     const span = document.createElement('span');
     span.textContent = symbols[i % symbols.length];
     span.style.left = Math.random() * 100 + '%';
